@@ -67,7 +67,6 @@ const YugoMap = ({ geoData }: { geoData: any }) => {
                     )
                 })}
 
-                {/* The Bubble Component */}
                 {activePathData?.centroid && (
                     <RegionBubble 
                         centroid={activePathData.centroid} 

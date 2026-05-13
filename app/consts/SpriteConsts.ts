@@ -1,5 +1,5 @@
 import { Region } from "../stores/TourStore";
-import { SpritePath } from "../types/SpriteTypes";
+import { SpritePath } from "../interfaces/SpriteInterface";
 
 export const DEFAULT_CHARACTER: SpritePath = {
 
