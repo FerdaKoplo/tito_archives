@@ -36,19 +36,29 @@ const WritingPage = () => {
 
   const documentEntries = Object.entries(WRITING_CONTENT);
 
-  const handleNextBio = () => {
-    if (bioPage < BIOGRAPHY.biography.content.length - 1) {
-      setDirection(1);
-      setBioPage(bioPage + 1);
-    }
-  };
+  const handleNextBio = useCallback(() => {
+    setDirection(1);
+    setBioPage((prevPage: number) => {
+      if (prevPage < BIOGRAPHY.biography.content.length - 1) {
+        return prevPage + 1;
+      }
 
-  const handlePrevBio = () => {
-    if (bioPage > 0) {
-      setDirection(-1);
-      setBioPage(bioPage - 1);
-    }
-  };
+      return prevPage;
+    });
+  }, []);
+
+  const handlePrevBio = useCallback(() => {
+    console.log("1. handlePrevBio triggered!");
+
+    setDirection(-1);
+    setBioPage((prevPage) => {
+      console.log("2. Inside Updater. prevPage is:", prevPage);
+      if (prevPage > 0) {
+        return prevPage - 1;
+      }
+      return prevPage;
+    });
+  }, []);
 
   const handleRandomSidebarBackgroundColor = useCallback((key: string) => {
     setActiveDocId(key);
@@ -67,16 +77,18 @@ const WritingPage = () => {
         animate="show"
         className="w-1/3 flex flex-col gap-6"
       >
-        <Link
-          href={"/"}
-          className=" bg-[#E5E5E5] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col"
-        >
-          <button className=" bg-black text-white p-3 border-b-4 border-black flex gap-10 text-2xl  items-center font-bold font-mono">
-            <span>
-              <MdKeyboardDoubleArrowLeft />
-            </span>
-            KEMBALI
-          </button>
+        <Link href={"/"}>
+          <motion.div
+            className=" bg-[#E5E5E5] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col"
+            whileTap={{ scale: 0.84, y: 10 }}
+          >
+            <button className=" bg-black text-white p-3 border-b-4 border-black flex gap-10 text-2xl  items-center font-bold font-mono">
+              <span>
+                <MdKeyboardDoubleArrowLeft />
+              </span>
+              KEMBALI
+            </button>
+          </motion.div>
         </Link>
 
         <div className="bg-[#E5E5E5] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col">
@@ -202,6 +214,8 @@ const WritingPage = () => {
                   totalPages={BIOGRAPHY.biography.content.length}
                   onNext={handleNextBio}
                   onPrev={handlePrevBio}
+                  IntervalTime={2000}
+                  isAutoPlay={true}
                 />
               </div>
             </motion.div>
