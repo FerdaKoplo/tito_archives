@@ -1,11 +1,11 @@
 import Image from "next/image";
 import YugoMap from "./components/map/YugoMap";
-import europeGeoData from "./data/europe.json"
+import InteractiveMapSection from "./partials/landing/InteractiveMapSection";
 
 export default function Home() {
   return (
     <div>
-      <YugoMap geoData={europeGeoData}></YugoMap>
+      <InteractiveMapSection />
     </div>
-  )
+  );
 }

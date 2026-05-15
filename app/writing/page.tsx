@@ -105,6 +105,23 @@ const WritingPage = () => {
             animate="show"
             className="flex flex-col gap-0 p-3 bg-[#F4F1EA]"
           >
+            <motion.button
+              variants={menuItemVariants}
+              onClick={() => setActiveDocId(null)}
+              whileHover={{ x: 5 }}
+              whileTap={{ scale: 0.98 }}
+              className={`text-left p-3 border-b-2 border-black transition-all font-mono text-sm font-bold uppercase flex justify-between items-center
+                ${
+                  activeDocId === null
+                    ? "bg-black text-white border-x-4 border-black shadow-inner"
+                    : "bg-transparent text-black hover:bg-[#C8102E] hover:text-white"
+                }`}
+            >
+              <span>BIOGRAPHY</span>
+              {activeDocId === null && (
+                <span className="w-2 h-2 rounded-full shrink-0 bg-[#C8102E]"></span>
+              )}
+            </motion.button>
             {documentEntries.map(([key, doc]) => {
               const isActive = activeDocId === key;
 
