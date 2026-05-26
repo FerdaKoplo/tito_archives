@@ -80,20 +80,18 @@ const DossierPanel: React.FC<DossierPanelProps> = ({ activeRegionId }) => {
                 </p>
               </div>
 
-              {/* 4. Map over the dynamically selected archive instead of hardcoding Slovenia */}
-              {activeArchive &&
-                Object.values(activeArchive).map((archive) => (
+              {activeArchive && (
+                <div className="px-8 pb-4 mt-auto">
                   <Link
-                    href={`/archives?id=${archive.id}`}
-                    key={archive.id}
-                    className="text-left p-3 border-2 border-black bg-white hover:bg-black hover:text-white transition-colors duration-200 block"
+                    href={`/archives?region=${activeRegionId}`}
+                    className="text-center p-3 border-2 border-black bg-[#C8102E] text-white hover:bg-black transition-colors duration-200 block shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px]"
                   >
-                    <span className="block text-xs uppercase mb-1">
-                      {archive.category} • {archive.type}
+                    <span className="block font-bold uppercase font-mono tracking-widest text-sm">
+                      Access Regional Archives
                     </span>
-                    <span className="block font-bold">{archive.title}</span>
                   </Link>
-                ))}
+                </div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>

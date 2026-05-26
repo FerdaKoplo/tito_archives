@@ -5,10 +5,15 @@ interface BaseInterface {
   category: "History" | "Geography" | "Demographics";
 }
 
+export interface TextSection {
+  subtitle: string;
+  paragraphs: string[];
+}
+
 export interface TextArchiveInterface extends BaseInterface {
   type: "text";
   date?: string;
-  content: string[];
+  sections: TextSection[];
   source: string;
 }
 
