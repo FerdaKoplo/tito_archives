@@ -23,4 +23,3 @@ export const useTourStore = create<TourState>((set) => ({
   setRegion: (region) => set({ currentRegion: region }),
   toggleCrying: (val) => set({ isCrying: val }),
 }));
-

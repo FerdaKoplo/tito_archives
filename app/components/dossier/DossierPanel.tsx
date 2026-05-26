@@ -1,6 +1,8 @@
 import { REGION_CONTENT } from "@/app/consts/RegionContent";
 import { AnimatePresence, motion } from "framer-motion";
 import Stamp from "../shared/Stamp";
+import { ARCHIVE_MAP, SLOVENIA_ARCHIVE } from "@/app/consts/ArchiveConst";
+import Link from "next/link";
 
 interface DossierPanelProps {
   activeRegionId: string | null;
@@ -9,8 +11,10 @@ interface DossierPanelProps {
 const DossierPanel: React.FC<DossierPanelProps> = ({ activeRegionId }) => {
   const data = activeRegionId ? REGION_CONTENT[activeRegionId] : null;
 
+  const activeArchive = activeRegionId ? ARCHIVE_MAP[activeRegionId] : null;
+
   return (
-    <div className="w-80 h-[500px] bg-[#E5E5E5] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col shrink-0">
+    <div className=" h-[500px] bg-[#E5E5E5] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col ">
       <div className="bg-black text-white p-3 border-b-4 border-black flex justify-between items-center">
         <h2 className="text-lg font-bold uppercase tracking-wider font-serif">
           Subject Dossier
@@ -44,14 +48,8 @@ const DossierPanel: React.FC<DossierPanelProps> = ({ activeRegionId }) => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="flex-1 gap-8 flex flex-col p-5"
+              className="flex-1 gap-3 flex flex-col p-5 overflow-y-auto"
             >
-              {/* <div className="w-full h-32 border-2 border-black bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] bg-gray-200 mb-4 flex items-center justify-center relative overflow-hidden"> */}
-              {/*   <span className="font-mono text-xs text-black font-bold"> */}
-              {/*     MISSING VISUAL ID */}
-              {/*   </span> */}
-              {/* </div> */}
-
               <div className="border-b-2 border-black p-4  my-4 text-black font-mono text-sm">
                 <div className="flex flex-col gap-6 px-8">
                   <div className="flex justify-between border-b border-gray-300 pb-1">
@@ -76,15 +74,26 @@ const DossierPanel: React.FC<DossierPanelProps> = ({ activeRegionId }) => {
                 </div>
               </div>
 
-              <div className="px-8 flex-1">
-                <p className="font-serif text-sm leading-relaxed text-black">
+              <div className="px-8 flex-1 mb-4">
+                <p className="font-serif text-sm leading-relaxed text-black ">
                   {data.description}
                 </p>
               </div>
 
-              <button className="mt-4 w-full bg-black text-white p-3 font-mono font-bold text-sm hover:bg-[#C8102E] transition-colors border-2 border-transparent active:border-black active:translate-y-1">
-                ACCESS ARCHIVES {">"}
-              </button>
+              {/* 4. Map over the dynamically selected archive instead of hardcoding Slovenia */}
+              {activeArchive &&
+                Object.values(activeArchive).map((archive) => (
+                  <Link
+                    href={`/archives?id=${archive.id}`}
+                    key={archive.id}
+                    className="text-left p-3 border-2 border-black bg-white hover:bg-black hover:text-white transition-colors duration-200 block"
+                  >
+                    <span className="block text-xs uppercase mb-1">
+                      {archive.category} • {archive.type}
+                    </span>
+                    <span className="block font-bold">{archive.title}</span>
+                  </Link>
+                ))}
             </motion.div>
           )}
         </AnimatePresence>

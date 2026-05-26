@@ -18,6 +18,35 @@
   }
 }
 
+@keyframes flicker {
+  0% {
+    opacity: 0.01;
+  }
+  5% {
+    opacity: 0.04;
+  }
+  10% {
+    opacity: 0.01;
+  }
+  15% {
+    opacity: 0.03;
+  }
+  50% {
+    opacity: 0.01;
+  }
+  80% {
+    opacity: 0.02;
+  }
+  100% {
+    opacity: 0.01;
+  }
+}
+
+.crt-flicker {
+  animation: flicker 0.15s infinite;
+  pointer-events: none;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

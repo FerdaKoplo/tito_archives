@@ -49,7 +49,7 @@ const YugoMap = ({ geoData }: { geoData: any }) => {
   const activePathData = mapPaths.find((p: any) => p.stateId === currentRegion);
 
   return (
-    <div className="w-full max-w-6xl mx-auto p-4 relative">
+    <div className="w-full max-w-4xl mx-auto p-4 relative">
       <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto">
         {mapPaths.map((republic: any) => {
           const isActive = currentRegion === republic.stateId;

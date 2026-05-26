@@ -4,7 +4,7 @@ import InteractiveMapSection from "./partials/landing/InteractiveMapSection";
 
 export default function Home() {
   return (
-    <div>
+    <div className="  bg-[#8A9A86] ">
       <InteractiveMapSection />
     </div>
   );

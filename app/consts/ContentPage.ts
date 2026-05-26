@@ -1,3 +1,4 @@
+import { ArchiveInterface } from "../interfaces/ArchiveInterface";
 import { WritingInterface } from "../interfaces/WiritngInterface";
 
 export const WRITING_NAVIGATION_COLOR = [
@@ -62,4 +63,3 @@ export const WRITING_CONTENT: Record<string, WritingInterface> = {
     ],
   },
 };
-

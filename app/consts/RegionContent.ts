@@ -8,6 +8,37 @@ export type RegionData = {
   description: string;
 };
 
+export const SPRITE_COMMENTARY = {
+  yugoslavia: {
+    description:
+      "Welcome to the Central Archive! Before you stands the glorious Socialist Federal Republic of Yugoslavia—six republics bound together by brotherhood and unity! Select a region on the terminal, and I will gladly be your guide.",
+  },
+  bosnia: {
+    description:
+      "Ah, SR Bosnia and Herzegovina! The beating heart of our nation. Those mountains aren't just beautiful—they are a natural fortress. Our heavy industry is safest there, hidden among the peaks!",
+  },
+  croatia: {
+    description:
+      "SR Croatia! Be sure your transit papers are in order; the Adriatic coast gets incredibly busy with foreign tourists. They come for the sun, but our glorious shipyards are the true marvel!",
+  },
+  macedonia: {
+    description:
+      "Down south to SR Macedonia! The agricultural yields there are second to none. Did you know Skopje was entirely rebuilt by international solidarity after the '63 earthquake? A true testament to brotherhood!",
+  },
+  montenegro: {
+    description:
+      "SR Montenegro may be our smallest republic by population, but her people have the fiercest spirit! Between the impenetrable Black Mountains and our vital deep-water ports, it is an unbreakable coastal shield.",
+  },
+  serbia: {
+    description:
+      "Welcome to SR Serbia, the administrative core of the Federation! With Belgrade steering the ship and the vast plains of Vojvodina to the north, it is the bustling, bureaucratic center of our unity.",
+  },
+  slovenia: {
+    description:
+      "SR Slovenia! Our gateway to the West. The factories in Ljubljana are producing absolute miracles in electronics right now. They say it is the most modern and efficient republic in the entire Federation!",
+  },
+};
+
 export const REGION_CONTENT: Record<string, RegionData> = {
   bosnia: {
     id: "bosnia",
