@@ -9,6 +9,7 @@ import {
 import Link from "next/link";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import PioonerGuide from "./PioonerGuide";
+import { SidebarDocument } from "@/app/interfaces/NavigationInterface";
 
 interface TerminalSidebarProps {
   title: string;
@@ -16,7 +17,7 @@ interface TerminalSidebarProps {
   defaultItemName: string;
   activeDocId: string | null;
   setActiveDocId: (id: string | null) => void;
-  documentEntries: [string, any][];
+  documentEntries: [string, SidebarDocument][];
 }
 
 const TerminalSidebar: React.FC<TerminalSidebarProps> = ({

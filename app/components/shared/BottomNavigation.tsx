@@ -1,11 +1,10 @@
 "use client";
 
-import { WRITING_NAVIGATION_COLOR } from "@/app/consts/ContentPage";
 import { NAVIGATION_CONST } from "@/app/consts/NavigationConst";
 import { useNavigationStore } from "@/app/stores/NavStore";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const BottomNavigation = () => {
   const pathName = usePathname();

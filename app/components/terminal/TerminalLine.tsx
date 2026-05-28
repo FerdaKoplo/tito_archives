@@ -1,5 +1,5 @@
 import { HistoryLine, LineType } from "@/app/interfaces/Terminal";
-import React, { FC, useMemo } from "react";
+import React, { useMemo } from "react";
 import TypewriterText from "./TypewriterText";
 
 interface TerminalLineProps {

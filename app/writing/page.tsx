@@ -2,11 +2,7 @@
 
 import React, { useCallback } from "react";
 import DocumentView from "../components/document/DocumentView";
-import {
-  BIOGRAPHY,
-  WRITING_CONTENT,
-  WRITING_NAVIGATION_COLOR,
-} from "../consts/ContentPage";
+import { BIOGRAPHY, WRITING_CONTENT } from "../consts/ContentPage";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   documentVariants,
@@ -16,16 +12,17 @@ import {
 import Pagination from "../components/shared/Pagination";
 import Stamp from "../components/shared/Stamp";
 import TerminalSidebar from "../components/shared/TerminalSidebar";
+import { SidebarDocument } from "../interfaces/NavigationInterface";
 
 const WritingPage = () => {
   const [activeDocId, setActiveDocId] = React.useState<string | null>(null);
   const [bioPage, setBioPage] = React.useState<number>(0);
-  const [activeColor, setActiveColor] = React.useState(
-    WRITING_NAVIGATION_COLOR[0],
-  );
   const [direction, setDirection] = React.useState<number>(1);
 
-  const documentEntries = Object.entries(WRITING_CONTENT);
+  const documentEntries = Object.entries(WRITING_CONTENT) as unknown as [
+    string,
+    SidebarDocument,
+  ][];
 
   const handleNextBio = useCallback(() => {
     setDirection(1);

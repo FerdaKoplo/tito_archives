@@ -1,7 +1,7 @@
 "use client";
 import { useMemo } from "react";
 import { geoMercator, geoPath } from "d3-geo";
-import { Region, useTourStore } from "../../stores/TourStore";
+import { useTourStore } from "../../stores/TourStore";
 import { REGION } from "../../consts/MapConsts";
 import RegionBubble from "./RegionBubble";
 import { FormatName } from "@/app/helpers/FormatName";

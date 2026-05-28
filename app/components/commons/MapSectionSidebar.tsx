@@ -6,8 +6,6 @@ import {
   sidebarVariants,
 } from "@/app/consts/AnimationConst";
 import { motion } from "framer-motion";
-import Link from "next/link";
-import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { Region, useTourStore } from "@/app/stores/TourStore";
 import { REGION_CONTENT, SPRITE_COMMENTARY } from "@/app/consts/RegionContent";
 import PioonerGuide from "../shared/PioonerGuide";

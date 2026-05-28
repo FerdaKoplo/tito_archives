@@ -1,4 +1,4 @@
-import { geoArea, geoIdentity, geoMercator, geoPath } from "d3-geo";
+import { geoIdentity, geoPath } from "d3-geo";
 import { useMemo } from "react";
 import { GeoFeatureCollection, GeoFeature } from "../interfaces/GeoInterface";
 
