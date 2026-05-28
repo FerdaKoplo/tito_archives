@@ -1,15 +1,18 @@
 import useTerritorialPath from "@/app/hooks/useTerritorialPath";
 import { VisualArchiveInterface } from "@/app/interfaces/ArchiveInterface";
-import { useTourStore } from "@/app/stores/TourStore";
+import { GeoFeatureCollection } from "@/app/interfaces/GeoInterface";
 import { useEffect, useState } from "react";
+
+const geoDataCache: Record<string, GeoFeatureCollection> = {};
 
 const TerritorialChange = ({
   territoryData,
 }: {
   territoryData: VisualArchiveInterface;
 }) => {
-  const { currentRegion, setRegion } = useTourStore();
-  const [geoData, setGeoData] = useState<any>(null);
+  const [geoData, setGeoData] = useState<GeoFeatureCollection>(
+    () => geoDataCache[territoryData.geoDataUrl] || null,
+  );
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -27,6 +30,12 @@ const TerritorialChange = ({
     const fetchMapData = async () => {
       if (!territoryData.geoDataUrl) return;
 
+      if (geoDataCache[territoryData.geoDataUrl]) {
+        setGeoData(geoDataCache[territoryData.geoDataUrl]);
+        setIsLoading(false);
+        return;
+      }
+
       try {
         setIsLoading(true);
         const response = await fetch(territoryData.geoDataUrl);
@@ -38,9 +47,14 @@ const TerritorialChange = ({
         }
 
         const data = await response.json();
+        geoDataCache[territoryData.geoDataUrl] = data;
         setGeoData(data);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("An unknown error occurred while accessing the datalink.");
+        }
       } finally {
         setIsLoading(false);
       }

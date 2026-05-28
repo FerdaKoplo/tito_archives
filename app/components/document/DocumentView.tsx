@@ -13,7 +13,7 @@ const DocumentView: React.FC<DocumentViewProps> = ({ docId }) => {
     return (
       <div className="p-8 bg-white border-4 border-black shadow-neubrutalism text-center">
         <p className="font-bold text-red-600">
-          Error 404: Document '{docId}' missing from the archive.
+          Error 404: Document {docId} missing from the archive.
         </p>
       </div>
     );
@@ -67,4 +67,3 @@ const DocumentView: React.FC<DocumentViewProps> = ({ docId }) => {
 };
 
 export default DocumentView;
-

@@ -1,7 +1,6 @@
 import { REGION_CONTENT } from "@/app/consts/RegionContent";
 import { AnimatePresence, motion } from "framer-motion";
-import Stamp from "../shared/Stamp";
-import { ARCHIVE_MAP, SLOVENIA_ARCHIVE } from "@/app/consts/ArchiveConst";
+import { ARCHIVE_MAP } from "@/app/consts/ArchiveConst";
 import Link from "next/link";
 
 interface DossierPanelProps {

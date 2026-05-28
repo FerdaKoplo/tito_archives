@@ -5,6 +5,7 @@ import YugoMap from "@/app/components/map/YugoMap";
 import { useTourStore } from "@/app/stores/TourStore";
 import europeGeoData from "@/app/data/europe.json";
 import MapSectionSidebar from "@/app/components/commons/MapSectionSidebar";
+import { GeoFeatureCollection } from "@/app/interfaces/GeoInterface";
 
 const InteractiveMapSection = () => {
   const currentRegion = useTourStore((state) => state.currentRegion);
@@ -16,7 +17,7 @@ const InteractiveMapSection = () => {
       </div>
       <div className="flex-1 min-w-0 flex flex-col gap-8 shrink-0">
         <div className="bg-[#E5E5E5] w-full border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-4">
-          <YugoMap geoData={europeGeoData} />
+          <YugoMap geoData={europeGeoData as GeoFeatureCollection} />
         </div>
         <DossierPanel activeRegionId={currentRegion} />
       </div>

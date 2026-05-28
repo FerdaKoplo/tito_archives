@@ -197,7 +197,7 @@ export const MACEDONIA_ARCHIVE: Record<string, ArchiveEntry> = {
     description:
       "The transition from the Vardar Banovina under the Kingdom of Yugoslavia to the recognized Socialist Republic of Macedonia.",
     geoDataUrl: "map.json",
-    targetEntity: "Macedonia",
+    targetEntity: "Macedonia (FYROM\/North Macedonia)",
   },
 };
 

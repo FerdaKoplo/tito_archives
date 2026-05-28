@@ -1,8 +1,9 @@
-import { geoArea, geoIdentity, geoMercator, geoPath } from "d3-geo";
+import { geoIdentity, geoPath } from "d3-geo";
 import { useMemo } from "react";
+import { GeoFeatureCollection, GeoFeature } from "../interfaces/GeoInterface";
 
 const useTerritorialPath = (
-  geoData: any,
+  geoData: GeoFeatureCollection | null,
   width: number,
   height: number,
   targetEntityName?: string,
@@ -15,24 +16,26 @@ const useTerritorialPath = (
       let primaryFeature = null;
 
       if (isCollection) {
-        primaryFeature = geoData.features.find((f: any) => {
-          const nameInJson =
-            f.properties?.cntry_name ||
-            f.properties?.CNTRY_NAME ||
-            f.properties?.name ||
-            "";
+        primaryFeature =
+          geoData.features.find((f: GeoFeature) => {
+            const nameInJson =
+              f.properties?.cntry_name ||
+              f.properties?.CNTRY_NAME ||
+              f.properties?.name ||
+              "";
 
-          return (
-            nameInJson.toString().trim().toLowerCase() ===
-            targetEntityName.trim().toLowerCase()
-          );
-        });
+            return (
+              nameInJson.toString().trim().toLowerCase() ===
+              targetEntityName.trim().toLowerCase()
+            );
+          }) || null;
 
         if (!primaryFeature) {
           const availableNames = Array.from(
             new Set(
               geoData.features.map(
-                (f: any) => f.properties?.cntry_name || f.properties?.name,
+                (f: GeoFeature) =>
+                  f.properties?.cntry_name || f.properties?.name || "",
               ),
             ),
           );
@@ -46,7 +49,10 @@ const useTerritorialPath = (
         primaryFeature = geoData;
       }
 
-      if (!primaryFeature || !primaryFeature.geometry) {
+      if (
+        !primaryFeature ||
+        (!("geometry" in primaryFeature) && !("features" in primaryFeature))
+      ) {
         return null;
       }
 
@@ -57,15 +63,23 @@ const useTerritorialPath = (
             [40, 40],
             [width - 40, height - 40],
           ],
-          primaryFeature,
+          primaryFeature as unknown as Parameters<
+            ReturnType<typeof geoIdentity>["fitExtent"]
+          >[1],
         );
 
       const pathGenerator = geoPath().projection(projection);
-      const svgPath = pathGenerator(primaryFeature) || "";
+      const svgPath =
+        pathGenerator(
+          primaryFeature as unknown as Parameters<typeof pathGenerator>[0],
+        ) || "";
+
+      const properties =
+        "properties" in primaryFeature ? primaryFeature.properties : {};
 
       return {
         svgPath,
-        properties: primaryFeature.properties || {},
+        properties,
       };
     } catch (error) {
       console.error("D3 Projection error:", error);
