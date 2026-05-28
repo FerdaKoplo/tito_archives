@@ -30,7 +30,7 @@ const MapSectionSidebar = () => {
       className="w-full flex flex-col gap-6"
     >
       <div className="bg-[#E5E5E5] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col">
-        <div className="bg-black text-white p-3 border-b-4 border-black flex justify-between items-center">
+        <div className="bg-black text-white p-3 border-b-4 border-black flex justify-between items-center gap-4">
           <h2 className="text-xl font-bold uppercase tracking-wider font-serif">
             MAP CONTROLS
           </h2>

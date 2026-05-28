@@ -62,7 +62,6 @@ const TerminalSidebar: React.FC<TerminalSidebarProps> = ({
 
       <div className="bg-[#E5E5E5] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col">
         <div className="bg-black text-white p-3 border-b-4 border-black flex justify-between items-center">
-          {/* 2. Use the dynamic title and sysCode */}
           <h2 className="text-xl font-bold uppercase tracking-wider font-serif">
             {title}
           </h2>
@@ -83,7 +82,6 @@ const TerminalSidebar: React.FC<TerminalSidebarProps> = ({
             className={`text-left p-3 border-b-2 border-black transition-all font-mono text-sm font-bold uppercase flex justify-between items-center
                 ${activeDocId === null ? "bg-black text-white border-x-4 border-black shadow-inner" : "bg-transparent text-black hover:bg-[#C8102E] hover:text-white"}`}
           >
-            {/* 3. Use the dynamic default item name */}
             <span>{defaultItemName}</span>
             {activeDocId === null && (
               <span className="w-2 h-2 rounded-full shrink-0 bg-[#C8102E]"></span>

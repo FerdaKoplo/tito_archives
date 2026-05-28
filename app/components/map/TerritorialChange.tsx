@@ -3,13 +3,16 @@ import { VisualArchiveInterface } from "@/app/interfaces/ArchiveInterface";
 import { useTourStore } from "@/app/stores/TourStore";
 import { useEffect, useState } from "react";
 
+const geoDataCache: Record<string, any> = {};
+
 const TerritorialChange = ({
   territoryData,
 }: {
   territoryData: VisualArchiveInterface;
 }) => {
-  const { currentRegion, setRegion } = useTourStore();
-  const [geoData, setGeoData] = useState<any>(null);
+  const [geoData, setGeoData] = useState<any>(
+    () => geoDataCache[territoryData.geoDataUrl] || null,
+  );
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -27,6 +30,12 @@ const TerritorialChange = ({
     const fetchMapData = async () => {
       if (!territoryData.geoDataUrl) return;
 
+      if (geoDataCache[territoryData.geoDataUrl]) {
+        setGeoData(geoDataCache[territoryData.geoDataUrl]);
+        setIsLoading(false);
+        return;
+      }
+
       try {
         setIsLoading(true);
         const response = await fetch(territoryData.geoDataUrl);
@@ -38,6 +47,7 @@ const TerritorialChange = ({
         }
 
         const data = await response.json();
+        geoDataCache[territoryData.geoDataUrl] = data;
         setGeoData(data);
       } catch (err: any) {
         setError(err.message);

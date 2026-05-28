@@ -41,19 +41,6 @@ const ArchiveRenderer = ({ activeEntry }: { activeEntry: ArchiveEntry }) => {
         </div>
 
         <div className="p-6 md:p-8 font-serif text-black flex flex-col gap-8">
-          {activeEntry.content && activeEntry.content.length > 0 && (
-            <div className="flex flex-col gap-4">
-              {activeEntry.content.map((paragraph, idx) => (
-                <p
-                  key={`content-${idx}`}
-                  className="leading-relaxed text-justify"
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          )}
-
           {activeEntry.sections?.map((section, sIdx) => (
             <div key={`section-${sIdx}`} className="flex flex-col gap-4">
               {section.subtitle && (
