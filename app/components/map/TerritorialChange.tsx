@@ -1,16 +1,16 @@
 import useTerritorialPath from "@/app/hooks/useTerritorialPath";
 import { VisualArchiveInterface } from "@/app/interfaces/ArchiveInterface";
-import { useTourStore } from "@/app/stores/TourStore";
+import { GeoFeatureCollection } from "@/app/interfaces/GeoInterface";
 import { useEffect, useState } from "react";
 
-const geoDataCache: Record<string, any> = {};
+const geoDataCache: Record<string, GeoFeatureCollection> = {};
 
 const TerritorialChange = ({
   territoryData,
 }: {
   territoryData: VisualArchiveInterface;
 }) => {
-  const [geoData, setGeoData] = useState<any>(
+  const [geoData, setGeoData] = useState<GeoFeatureCollection>(
     () => geoDataCache[territoryData.geoDataUrl] || null,
   );
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -49,8 +49,12 @@ const TerritorialChange = ({
         const data = await response.json();
         geoDataCache[territoryData.geoDataUrl] = data;
         setGeoData(data);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("An unknown error occurred while accessing the datalink.");
+        }
       } finally {
         setIsLoading(false);
       }

@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useCallback } from "react";
-import Image from "next/image";
-import { DEFAULT_CHARACTER } from "../consts/SpriteConsts";
 import DocumentView from "../components/document/DocumentView";
 import {
   BIOGRAPHY,
@@ -11,12 +9,8 @@ import {
 } from "../consts/ContentPage";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  chibiVariants,
   documentVariants,
   emptyStateVariants,
-  menuContainerVariants,
-  menuItemVariants,
-  sidebarVariants,
   textPaginationVariants,
 } from "../consts/AnimationConst";
 import Pagination from "../components/shared/Pagination";
