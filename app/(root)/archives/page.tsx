@@ -5,10 +5,10 @@ import Link from "next/link";
 import { ARCHIVE_MAP } from "@/app/consts/ArchiveConst";
 import ArchiveRenderer from "@/app/components/commons/ArchiveRenderer";
 import TerminalSidebar from "@/app/components/shared/TerminalSidebar";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { SidebarDocument } from "@/app/interfaces/NavigationInterface";
 
-const ArchivePage = () => {
+const ArchiveContent = () => {
   const searchParams = useSearchParams();
   const regionParam = searchParams.get("region");
   const archiveId = searchParams.get("id");
@@ -122,4 +122,18 @@ const ArchivePage = () => {
   );
 };
 
-export default ArchivePage;
+export default function ArchivePage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-[#E5E5E5] flex items-center justify-center">
+          <div className="font-mono font-bold text-xl uppercase animate-pulse text-black">
+            [ INITIALIZING SECURE DATALINK... ]
+          </div>
+        </div>
+      }
+    >
+      <ArchiveContent />
+    </Suspense>
+  );
+}
