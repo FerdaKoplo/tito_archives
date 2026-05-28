@@ -6,6 +6,7 @@ import { ARCHIVE_MAP } from "@/app/consts/ArchiveConst";
 import ArchiveRenderer from "@/app/components/commons/ArchiveRenderer";
 import TerminalSidebar from "@/app/components/shared/TerminalSidebar";
 import { useState } from "react";
+import { SidebarDocument } from "@/app/interfaces/NavigationInterface";
 
 const ArchivePage = () => {
   const searchParams = useSearchParams();
@@ -16,9 +17,9 @@ const ArchivePage = () => {
 
   const activeRegion = regionParam ? ARCHIVE_MAP[regionParam] : null;
 
-  const documentEntries = activeRegion
+  const documentEntries = (activeRegion && activeRegion.documents
     ? Object.entries(activeRegion.documents)
-    : [];
+    : []) as unknown as [string, SidebarDocument][];
 
   const activeEntry =
     activeRegion && activeDocId ? activeRegion.documents[activeDocId] : null;
