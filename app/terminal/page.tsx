@@ -5,7 +5,7 @@ import TerminalLine from "../components/terminal/TerminalLine";
 import useTerminalLogic from "../hooks/useTerminalLogic";
 import { LineType } from "../interfaces/Terminal";
 import { useTerminalStore } from "../stores/TerminalStore";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, KeyboardEvent } from "react";
 
 const TerminalPage = () => {
   const { history } = useTerminalStore();
