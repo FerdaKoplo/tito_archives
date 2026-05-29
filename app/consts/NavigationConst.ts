@@ -1,7 +1,7 @@
 export const NAVIGATION_CONST = [
   {
     label: "MAP",
-    url: "/",
+    url: "/yugoslavia-map",
   },
   {
     label: "WRITING",

@@ -27,12 +27,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased  `}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased bg-black `}
     >
-      <body className="min-h-full  flex flex-col">
-        <CRTOverlay />
-        <BottomNavigation />
-        {children}
+      <body className="min-h-full flex flex-col bg-black text-white p-4 md:p-8 overflow-hidden">
+        <div className="relative w-full h-full flex flex-col crt-curve overflow-hidden bg-[#E5E5E5]">
+          <CRTOverlay />
+          <BottomNavigation />
+
+          <main className="flex-1 overflow-auto relative z-10">{children}</main>
+        </div>
       </body>
     </html>
   );
