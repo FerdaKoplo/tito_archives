@@ -14,6 +14,9 @@ const BottomNavigation = () => {
   useEffect(() => {
     setActiveRoute(pathName);
   }, [pathName, setActiveRoute]);
+
+  if (pathName === "/") return null;
+
   return (
     <div className="fixed bottom-8 right-0 z-50 w-full max-w-sm px-4 pointer-events-none">
       <nav className="group relative isolate flex bg-[#E5E5E5] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] pointer-events-auto flex-col">
