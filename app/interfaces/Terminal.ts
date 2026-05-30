@@ -1,6 +1,7 @@
 export enum LineType {
   SYSTEM = "SYSTEM",
   SUCCESS = "SUCCESS",
+  DATA = "DATA",
   ERROR = "ERROR",
   COMMAND = "COMMAND",
 }

@@ -3,21 +3,31 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { BOOT_SEQUENCE } from "./consts/StartupConst";
-import { resolve } from "dns";
 import BootLine from "./components/terminal/BootLine";
+import useSound from "use-sound";
 
 export default function Home() {
   const [lines, setLines] = useState<string[]>([]);
+  const [isBooting, setIsBooting] = useState<boolean>(false);
   const router = useRouter();
+
+  const [playStartupSound, { stop: stopStartupSound }] = useSound(
+    "sounds/freesound_community-computer-hum-78343.mp3",
+  );
 
   useEffect(() => {
     if (sessionStorage.getItem("system_booted") === "true") {
       router.replace("/yugoslavia-map");
-      return;
     }
+  }, [router]);
+
+  useEffect(() => {
+    if (!isBooting) return;
+
     let isMounted = true;
 
     const runBootSequence = async () => {
+      playStartupSound();
       for (let i = 0; i < BOOT_SEQUENCE.length; i++) {
         if (!isMounted) return;
         setLines((prev) => [...prev, BOOT_SEQUENCE[i].text]);
@@ -40,8 +50,25 @@ export default function Home() {
 
     return () => {
       isMounted = false;
+      stopStartupSound();
     };
-  }, [router]);
+  }, [router, playStartupSound, isBooting]);
+
+  if (!isBooting) {
+    return (
+      <div
+        className="min-h-screen bg-black font-mono p-8 flex items-center justify-center cursor-pointer"
+        onClick={() => setIsBooting(true)}
+      >
+        <div className="text-white text-xl animate-pulse tracking-widest text-center">
+          <p>[ SYSTEM STANDBY ]</p>
+          <p className="mt-4 text-sm opacity-50">
+            CLICK ANYWHERE TO INITIALIZE DATALINK
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-black font-mono p-8 flex flex-col relative overflow-hidden">

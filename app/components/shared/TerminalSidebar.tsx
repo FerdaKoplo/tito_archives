@@ -47,7 +47,7 @@ const TerminalSidebar: React.FC<TerminalSidebarProps> = ({
       animate="show"
       className="w-1/3 flex flex-col gap-6 shrink-0"
     >
-      <Link href={"/"}>
+      <Link href={"/yugoslavia-map"}>
         <motion.div
           className="bg-[#E5E5E5] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col"
           whileTap={{ scale: 0.84, y: 10 }}
