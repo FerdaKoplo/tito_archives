@@ -3,7 +3,9 @@ import { HistoryLine, LineType } from "../interfaces/Terminal";
 
 interface TerminalState {
   history: HistoryLine[];
+  commandHistory: string[];
   addHistoryLines: (lines: HistoryLine[]) => void;
+  addCommandToHistory: (cmd: string) => void;
   clearHistory: () => void;
 }
 
@@ -22,7 +24,11 @@ const INITIAL_HISTORY: HistoryLine[] = [
 
 export const useTerminalStore = create<TerminalState>((set) => ({
   history: INITIAL_HISTORY,
+  commandHistory: [],
   addHistoryLines: (lines) =>
     set((state) => ({ history: [...state.history, ...lines] })),
+
+  addCommandToHistory: (cmd) =>
+    set((state) => ({ commandHistory: [...state.commandHistory, cmd] })),
   clearHistory: () => set({ history: [] }),
 }));
