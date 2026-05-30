@@ -54,8 +54,7 @@
 
   transform-style: preserve-3d;
 
-  transform: perspective(2000px) rotateX(0deg) rotateY(0deg) scaleZ(1)
-    scale(1.02);
+  transform: perspective(2000px) rotateX(0deg) rotateY(0deg) scaleZ(1) scale(1);
 
   text-shadow:
     1px 0px 1px rgba(255, 0, 0, 0.5),

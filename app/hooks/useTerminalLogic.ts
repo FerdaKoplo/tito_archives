@@ -3,6 +3,7 @@ import { useTerminalStore } from "../stores/TerminalStore";
 import { LineType } from "../interfaces/Terminal";
 import { COMMAND_NOT_FOUND, TERMINAL_DB } from "../consts/TerminalDB";
 import { useRouter } from "next/navigation";
+import { output } from "framer-motion/client";
 
 const useTerminalLogic = () => {
   const { addHistoryLines, clearHistory, addCommandToHistory } =
@@ -51,6 +52,15 @@ const useTerminalLogic = () => {
               {
                 text: "USAGE: OPEN [REGION_ID]-HIST-01",
                 type: LineType.SYSTEM,
+              },
+            ];
+            break;
+
+          case "SUDO":
+            outputLines = [
+              {
+                text: "REJECTED: ACCESS TO SUPER USER IS FORBIDDEN",
+                type: LineType.ERROR,
               },
             ];
             break;
